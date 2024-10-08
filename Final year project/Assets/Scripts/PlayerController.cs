@@ -1,23 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
-
-    private Vector2 _moveDirection;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float moveSpeed;
+    
+    private Rigidbody2D _rb;
+    private Vector2 _movement;
+    
+    private void Awake()
     {
-        
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        _moveDirection = InputManager.Instance.MoveInput;
+        _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
 
-        rb.velocity = new Vector2(_moveDirection.x, _moveDirection.y);
+        _rb.velocity = _movement * moveSpeed;
+
     }
 }
