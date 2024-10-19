@@ -18,7 +18,11 @@ public class ProceduralGenerationAlgorithms : MonoBehaviour
         for (var i = 0; i < walkLength; i++)
         {
             var newPosition = previousPosition + Direction2D.GetRandomCardinalDirection();
+            path.Add(newPosition);
+            previousPosition = newPosition;
         }
+
+        return path;
     }
 }
 
@@ -29,7 +33,7 @@ public static class Direction2D
         Vector2Int.up,
         Vector2Int.right,
         Vector2Int.down,
-        Vector2Int.left;
+        Vector2Int.left
     };
 
     public static Vector2Int GetRandomCardinalDirection()
